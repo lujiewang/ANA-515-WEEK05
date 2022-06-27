@@ -1,0 +1,43 @@
+---
+title: "week05"
+author: Lujie Wang
+date: 2022
+output: 
+  html_document:
+    theme: 
+      bootswatch: lumen 
+      thumbnails: true
+      lightbox: true
+      highlight: tango
+---
+
+```{r, include = TRUE}
+library(dplyr)
+url <- "https://raw.githubusercontent.com/fivethirtyeight/data/master/covid-geography/mmsa-icu-beds.csv"
+data <- read.csv(url)
+```
+
+
+```{r, include = TRUE}
+library(tidyverse)
+ggplot(data = data) + 
+  geom_point(mapping = aes(x = hospitals, y = total_at_risk))
+
+```
+
+
+```{r, include = TRUE}
+demo <- tribble(
+  ~cut,         ~icu_beds,
+  "Fair",       20,
+  "Good",       200,
+  "Very Good",  500,
+  "Premium",    1000,
+  "Ideal",      2000
+)
+
+ggplot(data = demo) +
+  geom_bar(mapping = aes(x = cut, y = icu_beds), stat = "identity")
+```
+
+
